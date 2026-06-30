@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AES-128 Lab — Web Simulasi Advanced Encryption Standard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="mark">AES</span>
+      <span>CIPHER LAB<small>Advanced Encryption Standard · 128-bit</small></span>
+    </div>
+    <span class="badge">ECB · 10 Ronde · State 4×4</span>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Bongkar AES-128<br><span class="accent">byte demi byte.</span></h1>
+      <p>Simulasi interaktif algoritma AES-128 — mulai dari Key Expansion, sepuluh ronde enkripsi, hingga dekripsi penuh. Setiap State Matrix 4×4 ditampilkan apa adanya, tanpa disembunyikan.</p>
+      <div class="meta-row">
+        <span class="meta-chip">Blok <b>128-bit</b></span>
+        <span class="meta-chip">Kunci <b>128-bit</b></span>
+        <span class="meta-chip"><b>10</b> Ronde + Initial Round</span>
+        <span class="meta-chip">GF(2⁸) · <b>0x11B</b></span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <span class="hv-label">State Matrix — Live Preview</span>
+      <table class="hero-matrix" id="heroState">
+        <tbody>
+          <tr><td>00</td><td>00</td><td>00</td><td>00</td></tr>
+          <tr><td>00</td><td>00</td><td>00</td><td>00</td></tr>
+          <tr><td>00</td><td>00</td><td>00</td><td>00</td></tr>
+          <tr><td>00</td><td>00</td><td>00</td><td>00</td></tr>
+        </tbody>
+      </table>
+      <span class="hv-caption">menampilkan hasil proses terakhir</span>
+    </div>
+  </section>
+
+  <main class="workspace">
+
+    <div class="panel">
+      <div class="mode-toggle">
+        <label><input type="radio" name="mode" value="encrypt" checked><span>ENCRYPT</span></label>
+        <label><input type="radio" name="mode" value="decrypt"><span>DECRYPT</span></label>
+      </div>
+
+      <div class="io-grid">
+        <div>
+          <div class="field">
+            <label id="inputLabel">Plaintext</label>
+            <textarea id="inputText" rows="2" placeholder="contoh: Kriptografi128bit"></textarea>
+          </div>
+          <div class="field">
+            <label>Kunci AES-128 (hex, 32 karakter)</label>
+            <input type="text" id="inputKey" placeholder="contoh: 000102030405060708090a0b0c0d0e0f">
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" id="btnRun"><span id="runLabel">ENCRYPT</span></button>
+            <button class="btn btn-ghost" id="btnSample">ISI CONTOH</button>
+            <button class="btn btn-ghost" id="btnReset">RESET</button>
+          </div>
+          <div class="error-box" id="errorBox"></div>
+        </div>
+
+        <div>
+          <div class="field">
+            <label id="outputLabel">Ciphertext (hex)</label>
+            <div class="output-area">
+              <input type="text" id="outputHex" readonly placeholder="hasil akan muncul di sini...">
+              <button class="btn" id="btnCopy">COPY</button>
+            </div>
+          </div>
+          <p style="color:var(--muted); font-size:12.5px; line-height:1.6;">
+            Mode <b>Encrypt</b> menerima teks biasa (maks. 16 karakter, otomatis di-zero-pad ke 16 byte) atau hex 32 karakter.
+            Mode <b>Decrypt</b> hanya menerima ciphertext hex 32 karakter. Semua proses dijalankan langsung di browser (client-side), tanpa library kriptografi pihak ketiga.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="detail-bar">
+      <h2>Rincian Proses Perhitungan</h2>
+      <button class="btn btn-ghost" id="detailToggle">Sembunyikan Semua Detail</button>
+    </div>
+
+    <div id="railHost"></div>
+    <div id="detailHost"></div>
+    <p class="empty-hint">Belum ada proses dijalankan. Isi plaintext &amp; kunci di atas, lalu tekan ENCRYPT/DECRYPT untuk melihat seluruh State Matrix tiap ronde.</p>
+
+  </main>
+
+  <footer class="site-footer">
+    AES-128 Cipher Lab — dibangun untuk Tugas Individu Mata Kuliah Kriptografi · Implementasi mandiri (SubBytes, ShiftRows, MixColumns, Key Expansion)
+  </footer>
+
+  <footer class="site-footer">
+    Nisa Muziyawati · Teknik Informatika 6B · Universitas Bale Bandung (UNIBBA) · 2026
+  </footer>
+
+  <script src="js/constants.js"></script>
+  <script src="js/keyExpansion.js"></script>
+  <script src="js/cipher.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
