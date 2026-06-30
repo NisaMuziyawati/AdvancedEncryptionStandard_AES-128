@@ -4,7 +4,7 @@ Simulasi web interaktif algoritma **AES-128** (Advanced Encryption Standard) —
 
 ## Struktur Proyek
 ```
-/aes-app
+Advanced Encryption Standard (AES-128)
  ├── index.html          ← halaman utama (UI)
  ├── css/
  │    └── style.css      ← seluruh styling (tema "Cipher Lab")
